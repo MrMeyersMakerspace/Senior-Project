@@ -1,4 +1,3 @@
-//This is a test
 import React from 'react';
 import { GoogleLogin, GoogleLogout } from 'react-google-login';
 
@@ -24,7 +23,6 @@ export default class GoogleButton extends React.Component {
         if (response.tokenId) {
             this.setState({
                 isLoggedIn: true,
-                accessToken: response.tokenId,
                 name: response.profileObj.name
             });
 
@@ -55,9 +53,6 @@ export default class GoogleButton extends React.Component {
         let logoutMessage = 'Logout ' + this.state.name;
         return (
             <div>
-
-                {this.state.name ? <h1>Hi {this.state.name}</h1> : null}
-
                 {this.state.isLoggedIn ?
                     <GoogleLogout
                         clientId={CLIENT_ID}
@@ -74,9 +69,6 @@ export default class GoogleButton extends React.Component {
                         responsetype='code,token'
                     />
                 }
-
-                {this.state.accessToken ? <h5>Your Access Token: <br /><br /> {this.state.accessToken}</h5> : null}
-
             </div>
         )
     }
