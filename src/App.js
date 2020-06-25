@@ -1,6 +1,7 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import GoogleButton from './GoogleButton';
 
 function App() {
   return (
@@ -18,7 +19,11 @@ function App() {
         >
           Learn React
         </a>
+        <br/>
+        <h1>Google Login Demo</h1>
+        <GoogleButton/>
       </header>
+
     </div>
   );
 }
