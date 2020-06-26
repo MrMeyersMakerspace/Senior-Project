@@ -17,7 +17,6 @@ export default class NavBar extends React.Component {
 
         this.setState({ 'NavItemActive': itemId }, () => {
             document.getElementById(this.state.NavItemActive).classList.add('active');
-            console.log('NavItemActive = ' + this.state.NavItemActive)
         });
     }
 
