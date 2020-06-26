@@ -1,30 +1,27 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
-import GoogleButton from './GoogleButton';
+import Welcome from './contents/Welcome';
+import NavBar from './components/NavBar';
+import EnterTests from './contents/EnterTests';
+import ViewTests from './contents/ViewTests';
+import { BrowserRouter as Router, Route, } from 'react-router-dom';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-        <br/>
-        <h1>Google Login Demo</h1>
-        <GoogleButton/>
-      </header>
-
-    </div>
+    <Router>
+      <div className="App">
+        <NavBar />
+        <Route exact path='/'>
+          <Welcome />
+        </Route>
+        <Route path='/viewtests'>
+          <ViewTests />
+        </Route>
+        <Route path='/entertests'>
+          <EnterTests />
+        </Route>
+      </div>
+    </Router>
   );
 }
 

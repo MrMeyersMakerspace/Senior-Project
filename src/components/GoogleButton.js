@@ -9,8 +9,7 @@ export default class GoogleButton extends React.Component {
 
         this.state = {
             isLoggedIn: false,
-            name: '',
-            accessToken: ''
+            name: ''
         };
 
         this.login = this.login.bind(this);
@@ -23,7 +22,8 @@ export default class GoogleButton extends React.Component {
         if (response.tokenId) {
             this.setState({
                 isLoggedIn: true,
-                name: response.profileObj.name
+                email: response.profileObj.email,
+                pictureLink: response.profileObj.imageUrl
             });
 
             console.log('Login Successful');
@@ -34,7 +34,6 @@ export default class GoogleButton extends React.Component {
     logout(response) {
         this.setState({
             isLoggedIn: false,
-            accessToken: '',
             name: ''
         });
 
@@ -52,17 +51,17 @@ export default class GoogleButton extends React.Component {
     render() {
         let logoutMessage = 'Logout ' + this.state.name;
         return (
-            <div>
+            <div id='GoogleStuff'>
                 {this.state.isLoggedIn ?
                     <GoogleLogout
                         clientId={CLIENT_ID}
                         buttonText={logoutMessage}
                         onLogoutSuccess={this.logout}
                         onFailure={this.handleLogoutFailure}
-                    ></GoogleLogout> :
+                    ><img src={this.state.pictureLink} alt='Profile Pic' id='profilepic' width='50px'/><p id='logoutfont'>Logout</p></GoogleLogout> :
                     <GoogleLogin
                         clientId={CLIENT_ID}
-                        buttonText='Click to Login'
+                        buttonText='Login'
                         onSuccess={this.login}
                         onFailure={this.handleLoginFailure}
                         cookiePolicy={'single_host_origin'}
