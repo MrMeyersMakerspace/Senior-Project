@@ -49,16 +49,14 @@ export default class GoogleButton extends React.Component {
     }
 
     render() {
-        let logoutMessage = 'Logout ' + this.state.name;
-        return (
+         return (
             <div id='GoogleStuff'>
                 {this.state.isLoggedIn ?
                     <GoogleLogout
                         clientId={CLIENT_ID}
-                        buttonText={logoutMessage}
                         onLogoutSuccess={this.logout}
                         onFailure={this.handleLogoutFailure}
-                    ><img src={this.state.pictureLink} alt='Profile Pic' id='profilepic' width='50px'/><p id='logoutfont'>Logout</p></GoogleLogout> :
+                    ><img src={this.state.pictureLink} alt='Profile Pic' class='profilepic' /><div id='logoutfont'>Logout</div></GoogleLogout> :
                     <GoogleLogin
                         clientId={CLIENT_ID}
                         buttonText='Login'

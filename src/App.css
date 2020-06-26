@@ -43,9 +43,7 @@ nav {
 }
 
 .profilepic {
-  border-radius: 50%;
-  width: 200px;
-  margin: 30px;
+  width: 70px;
 }
 
 .typingeffect {
@@ -124,7 +122,7 @@ h1, h2, h3, h4, p {
   margin: 30px;
 }
 
-@media all and (max-width: 500px) {
+@media all and (max-width: 768px) {
   :root {
     --fontsize-nav: 1rem;
     --sidebar-flex: 0;
@@ -146,6 +144,7 @@ h1, h2, h3, h4, p {
   }
   nav ul {
     display: flex;
+    justify-content: space-around;
     align-items: center;
   }
   nav ul li {
@@ -161,7 +160,7 @@ h1, h2, h3, h4, p {
   .social i {
     padding-right: 0px;
   }
-  #logoutfont {
+  .profilepic {
     display: none;
   }
 }
