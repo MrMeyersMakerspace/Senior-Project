@@ -25,7 +25,7 @@ export default class NavBar extends React.Component {
         return (
             <nav>
                 <ul>
-                    <NavItem item='Welcome' tolink='/' activeccomponent={this.activeitem} />
+                    <NavItem item='Instructions' tolink='/instructions' activeccomponent={this.activeitem} />
                     <NavItem item='View Tests' tolink='/viewtests' activeccomponent={this.activeitem} />
                     <NavItem item='Enter Tests' tolink='/entertests' activeccomponent={this.activeitem} />
                     <GoogleButton />
