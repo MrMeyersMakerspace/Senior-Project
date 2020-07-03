@@ -108,14 +108,6 @@ label {
   font-style: italic;
 }
 
-button {
-  padding: 7px 10px;
-  background-color: #3e615e;
-  color: #f4f5f9;
-  border: none;
-  align-self: flex-end;
-}
-
 textarea {
   width: 100%;
   height: 100px;
@@ -129,6 +121,18 @@ input {
   align-self: center;
 }
 
+button {
+  padding: 7px 10px;
+  background-color: #3e615e;
+  color: #f4f5f9;
+  border: none;
+  display: inline-block;
+}
+
+.addRemoveButtonGroup {
+  width: 100%;
+}
+
 @media all and (max-width: 768px) {
   :root {
     --fontsize-nav: 1rem;
@@ -138,7 +142,6 @@ input {
   .App {
     flex-direction: column;
   }
-
   .condiv {
     padding: 10px;
   }

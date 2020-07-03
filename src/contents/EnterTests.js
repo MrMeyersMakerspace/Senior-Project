@@ -30,6 +30,10 @@ export default class EnterTests extends React.Component {
 
     }
 
+    removeStep(event) {
+
+    }
+
     render() {
         return (
             <div className='condiv home'>
@@ -47,7 +51,10 @@ export default class EnterTests extends React.Component {
                     type='text'
                     onChange={this.handleUserInput} />
                 <br />
-                <button onClick={this.addStep}>Add Step</button>
+                <div className='addRemoveButtonGroup'>
+                    <button onClick={this.addStep} style={{float: 'left'}}>Add Step</button>
+                    <button onClick={this.removeStep} style={{float: 'right'}}>Remove Step</button>
+                </div>
                 <br />
                 <label>Desired Chemical Concentration <span className='instructions'>(number only)</span>:</label>
                 <input
