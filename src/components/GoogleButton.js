@@ -3,6 +3,8 @@ import { GoogleLogin, GoogleLogout } from 'react-google-login';
 
 const CLIENT_ID = '1064606944267-hani90494cs114jprs50gtfp42q93msl.apps.googleusercontent.com';
 
+// Add Context for isLoggedIn so that it is accessable globally
+
 export default class GoogleButton extends React.Component {
     constructor(props) {
         super(props);
@@ -56,7 +58,7 @@ export default class GoogleButton extends React.Component {
                         clientId={CLIENT_ID}
                         onLogoutSuccess={this.logout}
                         onFailure={this.handleLogoutFailure}
-                    ><img src={this.state.pictureLink} alt='Profile Pic' class='profilepic' /><div id='logoutfont'>Logout</div></GoogleLogout> :
+                    ><img src={this.state.pictureLink} alt='Profile Pic' className='profilepic' /><div id='logoutfont'>Logout</div></GoogleLogout> :
                     <GoogleLogin
                         clientId={CLIENT_ID}
                         buttonText='Login'
