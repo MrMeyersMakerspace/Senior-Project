@@ -3,15 +3,15 @@ import { GoogleLogin, GoogleLogout } from 'react-google-login';
 
 const CLIENT_ID = '1064606944267-hani90494cs114jprs50gtfp42q93msl.apps.googleusercontent.com';
 
-// Add Context for isLoggedIn so that it is accessable globally
+// Add Context for isAuthenticated so that it is accessable globally
 
 export default class GoogleButton extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            isLoggedIn: false,
-            name: ''
+            isAuthenticated: false,
+            email: ''
         };
 
         this.login = this.login.bind(this);
@@ -23,7 +23,7 @@ export default class GoogleButton extends React.Component {
     login(response) {
         if (response.tokenId) {
             this.setState({
-                isLoggedIn: true,
+                isAuthenticated: true,
                 email: response.profileObj.email,
                 pictureLink: response.profileObj.imageUrl
             });
@@ -35,8 +35,8 @@ export default class GoogleButton extends React.Component {
 
     logout(response) {
         this.setState({
-            isLoggedIn: false,
-            name: ''
+            isAuthenticated: false,
+            email: ''
         });
 
         console.log('Logout Successful');
@@ -53,7 +53,7 @@ export default class GoogleButton extends React.Component {
     render() {
          return (
             <div id='GoogleStuff'>
-                {this.state.isLoggedIn ?
+                {this.state.isAuthenticated ?
                     <GoogleLogout
                         clientId={CLIENT_ID}
                         onLogoutSuccess={this.logout}

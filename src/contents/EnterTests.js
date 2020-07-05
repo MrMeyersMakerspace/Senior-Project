@@ -10,10 +10,13 @@ export default class EnterTests extends React.Component {
             steps: [],
             desiredConcentration: '',
             formula: '',
-            sizeOfTank: ''
+            sizeOfTank: '',
+            currentNumSteps: 1
         }
 
         this.handleUserInput = this.handleUserInput.bind(this);
+        this.addStep = this.addStep.bind(this);
+        this.removeStep = this.removeStep.bind(this);
     }
 
     handleUserInput(event) {
@@ -27,11 +30,19 @@ export default class EnterTests extends React.Component {
     }
 
     addStep(event) {
-
+        let newSteps = this.state.currentNumSteps + 1;
+        console.log('newSteps = ' + newSteps);
+        this.setState({
+            currentNumSteps: newSteps
+        })
     }
 
     removeStep(event) {
-
+        let newSteps = this.state.currentNumSteps - 1;
+        console.log('newSteps = ' + newSteps);
+        this.setState({
+            currentNumSteps: newSteps
+        })
     }
 
     render() {
@@ -46,14 +57,16 @@ export default class EnterTests extends React.Component {
                     onChange={this.handleUserInput} />
                 <br />
                 <label>Instructions for Step:</label>
+
                 <textarea
                     name='steps'
                     type='text'
+                    id='step1'
                     onChange={this.handleUserInput} />
                 <br />
                 <div className='addRemoveButtonGroup'>
-                    <button onClick={this.addStep} style={{float: 'left'}}>Add Step</button>
-                    <button onClick={this.removeStep} style={{float: 'right'}}>Remove Step</button>
+                    <button onClick={this.addStep} style={{ float: 'left' }}>Add Step</button>
+                    <button onClick={this.removeStep} style={{ float: 'right' }}>Remove Step</button>
                 </div>
                 <br />
                 <label>Desired Chemical Concentration <span className='instructions'>(number only)</span>:</label>
@@ -71,8 +84,10 @@ export default class EnterTests extends React.Component {
                 <label>Size of Tank <span className='instructions'>(number only)</span></label>
                 <input
                     name='formula'
-                    type='text'
+                    type='number'
                     onChange={this.handleUserInput} />
+                    <br />
+                    <p>{this.state.currentNumSteps}</p>
             </div>
         )
     }
