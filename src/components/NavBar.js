@@ -1,6 +1,7 @@
 import React from 'react';
 import NavItem from './NavItem';
 import GoogleButton from './GoogleButton';
+import UserContext from './UserContext';
 
 export default class NavBar extends React.Component {
     constructor(props) {
@@ -11,13 +12,17 @@ export default class NavBar extends React.Component {
     }
 
     activeitem = (itemId) => {
+        const user = this.context;
         if (this.state.NavItemActive.length > 0) {
             document.getElementById(this.state.NavItemActive).classList.remove('active');
         }
 
-        this.setState({ 'NavItemActive': itemId }, () => {
-            document.getElementById(this.state.NavItemActive).classList.add('active');
-        });
+        // Only set the page active if logged in, otherwise it redirects to the main page
+        if (user.isAuthenticated) {
+            this.setState({ 'NavItemActive': itemId }, () => {
+                document.getElementById(this.state.NavItemActive).classList.add('active');
+            });
+        }
     }
 
     render() {
@@ -33,3 +38,4 @@ export default class NavBar extends React.Component {
         )
     }
 }
+NavBar.contextType = UserContext;

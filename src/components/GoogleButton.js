@@ -1,5 +1,7 @@
 import React from 'react';
 import { GoogleLogin, GoogleLogout } from 'react-google-login';
+import NavBar from './NavBar';
+import UserContext from './UserContext';
 
 const CLIENT_ID = '1064606944267-hani90494cs114jprs50gtfp42q93msl.apps.googleusercontent.com';
 
@@ -10,8 +12,7 @@ export default class GoogleButton extends React.Component {
         super(props);
 
         this.state = {
-            isAuthenticated: false,
-            email: ''
+            isAuthenticated: false
         };
 
         this.login = this.login.bind(this);
@@ -21,12 +22,15 @@ export default class GoogleButton extends React.Component {
     }
 
     login(response) {
+        const user = this.context;
         if (response.tokenId) {
             this.setState({
                 isAuthenticated: true,
-                email: response.profileObj.email,
                 pictureLink: response.profileObj.imageUrl
             });
+
+            user.setAuthentication(true);
+            user.setEmail(response.profileObj.email);
 
             console.log('Login Successful');
         }
@@ -34,12 +38,19 @@ export default class GoogleButton extends React.Component {
     }
 
     logout(response) {
+        const user = this.context;
+
         this.setState({
-            isAuthenticated: false,
-            email: ''
+            isAuthenticated: false
         });
 
+        user.setAuthentication(false);
+        user.setEmail('');
+
         console.log('Logout Successful');
+
+        // Refresh page so user is redirected home and app is reset
+        window.location.reload();
     }
 
     handleLoginFailure(response) {
@@ -51,7 +62,7 @@ export default class GoogleButton extends React.Component {
     }
 
     render() {
-         return (
+        return (
             <div id='GoogleStuff'>
                 {this.state.isAuthenticated ?
                     <GoogleLogout
@@ -71,4 +82,5 @@ export default class GoogleButton extends React.Component {
             </div>
         )
     }
-} 
+}
+GoogleButton.contextType = UserContext;

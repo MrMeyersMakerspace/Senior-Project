@@ -11,9 +11,15 @@ import { BrowserRouter as Router, Route, } from 'react-router-dom';
 function App() {
   const user = {
     isAuthenticated: false,
-    email: 'testemail@text.com'
+    email: 'testemail@text.com',
     //Function to set isAuthenticated
+    setAuthentication(auth) {
+      this.isAuthenticated = auth;
+    },
     //Function to set email
+    setEmail(auth) {
+      this.email = auth;
+    }
   }
 
   return (

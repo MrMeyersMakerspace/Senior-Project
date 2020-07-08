@@ -1,5 +1,6 @@
 import React from 'react';
-import { Input } from '../components/Input';
+import UserContext from '../components/UserContext';
+import { Redirect } from 'react-router-dom';
 
 export default class EnterTests extends React.Component {
     constructor(props) {
@@ -46,6 +47,10 @@ export default class EnterTests extends React.Component {
     }
 
     render() {
+        const user = this.context;
+        if (!user.isAuthenticated) {
+            return <Redirect to='/' />
+        }
         return (
             <div className='condiv home'>
                 <h1 className='centerText'>Please enter your testing procedures below</h1>
@@ -86,9 +91,10 @@ export default class EnterTests extends React.Component {
                     name='formula'
                     type='number'
                     onChange={this.handleUserInput} />
-                    <br />
-                    <p>{this.state.currentNumSteps}</p>
+                <br />
+                <p>{this.state.currentNumSteps}</p>
             </div>
         )
     }
 }
+EnterTests.contextType = UserContext;
