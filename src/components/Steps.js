@@ -15,6 +15,7 @@ const Steps = (props) => {
                         type='text'
                         onChange={props.handleUserInput} />
                     <br />
+                    <br />
                 </div>
             )
         })

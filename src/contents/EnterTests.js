@@ -49,10 +49,11 @@ export default class EnterTests extends React.Component {
     }
 
     render() {
-        const user = this.context;
-        if (!user.isAuthenticated) {
-            return <Redirect to='/' />
-        }
+        // // Authentication redirect
+        // const user = this.context;
+        // if (!user.isAuthenticated) {
+        //     return <Redirect to='/' />
+        // }
 
         const { stepList } = this.state;
         return (
@@ -88,6 +89,10 @@ export default class EnterTests extends React.Component {
                     name='sizeOfTank'
                     type='number'
                     onChange={this.handleUserInput} />
+                <br />
+
+                <br />
+                <button onClick={this.submitForm} className='submitButton'>Submit Testing Procedures</button>
             </div>
         )
     }
