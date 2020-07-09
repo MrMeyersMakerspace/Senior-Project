@@ -117,6 +117,10 @@ input {
   width: 100%;
 }
 
+.step {
+  width: 100%;
+}
+
 .centerText {
   align-self: center;
 }

@@ -1,11 +1,8 @@
 import React from 'react';
 import { GoogleLogin, GoogleLogout } from 'react-google-login';
-import NavBar from './NavBar';
 import UserContext from './UserContext';
 
 const CLIENT_ID = '1064606944267-hani90494cs114jprs50gtfp42q93msl.apps.googleusercontent.com';
-
-// Add Context for isAuthenticated so that it is accessable globally
 
 export default class GoogleButton extends React.Component {
     constructor(props) {

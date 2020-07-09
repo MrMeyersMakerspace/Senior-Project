@@ -1,5 +1,6 @@
 import React from 'react';
 import UserContext from '../components/UserContext';
+import Steps from '../components/Steps';
 import { Redirect } from 'react-router-dom';
 
 export default class EnterTests extends React.Component {
@@ -8,49 +9,53 @@ export default class EnterTests extends React.Component {
 
         this.state = {
             testName: '',
-            steps: [],
+            stepList: [{ idx: Math.random(), step: '' }],
             desiredConcentration: '',
             formula: '',
-            sizeOfTank: '',
-            currentNumSteps: 1
+            sizeOfTank: ''
         }
 
         this.handleUserInput = this.handleUserInput.bind(this);
         this.addStep = this.addStep.bind(this);
         this.removeStep = this.removeStep.bind(this);
+        // this.handleStepInput = this.handleStepInput.bind(this);
     }
 
     handleUserInput(event) {
-        const target = event.target;
-        const value = target.value;
-        const name = target.name;
-
-        this.setState({
-            [name]: value
-        })
+        if (['step'].includes(event.target.name)) {
+            const stepList = [...this.state.stepList];
+            stepList[event.target.dataset.id][event.target.name] = event.target.value;
+            this.setState({
+                [event.target.name]: event.target.value
+            })
+        } else {
+            this.setState({
+                [event.target.name]: event.target.value
+            })
+        }
     }
 
-    addStep(event) {
-        let newSteps = this.state.currentNumSteps + 1;
-        console.log('newSteps = ' + newSteps);
-        this.setState({
-            currentNumSteps: newSteps
-        })
+    addStep = (event) => {
+        this.setState((prevState) => ({
+            stepList: [...prevState.stepList, { idx: Math.random(), step: '' }]
+        }));
     }
 
-    removeStep(event) {
-        let newSteps = this.state.currentNumSteps - 1;
-        console.log('newSteps = ' + newSteps);
+    removeStep = (event) => {
+        const newStepList = this.state.stepList.slice(0, (this.state.stepList.length - 1));
+        console.log(newStepList);
         this.setState({
-            currentNumSteps: newSteps
+            stepList: newStepList
         })
     }
 
     render() {
-        const user = this.context;
-        if (!user.isAuthenticated) {
-            return <Redirect to='/' />
-        }
+        // const user = this.context;
+        // if (!user.isAuthenticated) {
+        //     return <Redirect to='/' />
+        // }
+
+        const { stepList } = this.state;
         return (
             <div className='condiv home'>
                 <h1 className='centerText'>Please enter your testing procedures below</h1>
@@ -61,38 +66,31 @@ export default class EnterTests extends React.Component {
                     type='text'
                     onChange={this.handleUserInput} />
                 <br />
-                <label>Instructions for Step:</label>
-
-                <textarea
-                    name='steps'
-                    type='text'
-                    id='step1'
-                    onChange={this.handleUserInput} />
-                <br />
+                <Steps stepList={stepList} handleUserInput={this.handleUserInput} />
                 <div className='addRemoveButtonGroup'>
                     <button onClick={this.addStep} style={{ float: 'left' }}>Add Step</button>
                     <button onClick={this.removeStep} style={{ float: 'right' }}>Remove Step</button>
                 </div>
                 <br />
-                <label>Desired Chemical Concentration <span className='instructions'>(number only)</span>:</label>
+                <label>Desired Chemical Concentration <span className='instructions'>(number only)</span> :</label>
                 <input
                     name='desiredConcentration'
                     type='number'
                     onChange={this.handleUserInput} />
                 <br />
-                <label>Calculation Formula <span className='instructions'>(letters, spaces, and + - * / ^ symbols only)</span>:</label>
+                <label>Calculation Formula <span className='instructions'>(letters, spaces, and + - * / ^ symbols only)</span> :</label>
                 <input
                     name='formula'
                     type='text'
                     onChange={this.handleUserInput} />
                 <br />
-                <label>Size of Tank <span className='instructions'>(number only)</span></label>
+                <label>Size of Tank <span className='instructions'>(number only)</span> :</label>
                 <input
-                    name='formula'
+                    name='sizeOfTank'
                     type='number'
                     onChange={this.handleUserInput} />
                 <br />
-                <p>{this.state.currentNumSteps}</p>
+                <pre>{JSON.stringify(this.state)}</pre>
             </div>
         )
     }
