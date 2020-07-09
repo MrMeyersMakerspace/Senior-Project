@@ -89,8 +89,7 @@ export default class EnterTests extends React.Component {
                     name='sizeOfTank'
                     type='number'
                     onChange={this.handleUserInput} />
-                <br />
-                <pre>{JSON.stringify(this.state)}</pre>
+                    
             </div>
         )
     }
