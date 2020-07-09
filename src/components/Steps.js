@@ -13,8 +13,7 @@ const Steps = (props) => {
                         id={stepNumber}
                         data-id={index}
                         type='text'
-                        onChange={props.handleUserInput}
-                    />
+                        onChange={props.handleUserInput} />
                     <br />
                 </div>
             )

@@ -26,7 +26,6 @@ export default class EnterTests extends React.Component {
             const stepList = [...this.state.stepList];
             stepList[event.target.dataset.id][event.target.name] = event.target.value;
             this.setState({
-                [event.target.name]: event.target.value
             })
         } else {
             this.setState({
@@ -50,10 +49,10 @@ export default class EnterTests extends React.Component {
     }
 
     render() {
-        // const user = this.context;
-        // if (!user.isAuthenticated) {
-        //     return <Redirect to='/' />
-        // }
+        const user = this.context;
+        if (!user.isAuthenticated) {
+            return <Redirect to='/' />
+        }
 
         const { stepList } = this.state;
         return (
@@ -89,7 +88,6 @@ export default class EnterTests extends React.Component {
                     name='sizeOfTank'
                     type='number'
                     onChange={this.handleUserInput} />
-                    
             </div>
         )
     }
