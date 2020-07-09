@@ -21,7 +21,7 @@ export default class EnterTests extends React.Component {
         // this.handleStepInput = this.handleStepInput.bind(this);
     }
 
-    handleUserInput(event) {
+    handleUserInput = (event) => {
         if (['step'].includes(event.target.name)) {
             const stepList = [...this.state.stepList];
             stepList[event.target.dataset.id][event.target.name] = event.target.value;
@@ -46,6 +46,10 @@ export default class EnterTests extends React.Component {
         this.setState({
             stepList: newStepList
         })
+    }
+
+    submitForm = () => {
+        alert('This would submit the form');
     }
 
     render() {
@@ -90,7 +94,6 @@ export default class EnterTests extends React.Component {
                     type='number'
                     onChange={this.handleUserInput} />
                 <br />
-
                 <br />
                 <button onClick={this.submitForm} className='submitButton'>Submit Testing Procedures</button>
             </div>
