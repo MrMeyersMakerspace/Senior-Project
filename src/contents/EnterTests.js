@@ -18,7 +18,6 @@ export default class EnterTests extends React.Component {
         this.handleUserInput = this.handleUserInput.bind(this);
         this.addStep = this.addStep.bind(this);
         this.removeStep = this.removeStep.bind(this);
-        // this.handleStepInput = this.handleStepInput.bind(this);
     }
 
     handleUserInput = (event) => {
@@ -53,11 +52,11 @@ export default class EnterTests extends React.Component {
     }
 
     render() {
-        // // Authentication redirect
-        // const user = this.context;
-        // if (!user.isAuthenticated) {
-        //     return <Redirect to='/' />
-        // }
+        // Authentication redirect
+        const user = this.context;
+        if (!user.isAuthenticated) {
+            return <Redirect to='/' />
+        }
 
         const { stepList } = this.state;
         return (
